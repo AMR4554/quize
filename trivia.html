@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Question</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <audio autoplay loop> <source src="../static/background.mp3.wav" type="audio/mpeg"> Your browser does not support the audio element. </audio>
+    <h1>Question {{ question_id }}</h1>
+    <p>{{ question['question'] }}</p>
+    <form method="POST">
+        <div class="options">
+            {% for option in question['options'] %}
+            <button type="submit" name="option" value="{{ option }}">{{ option }}</button>
+            {% endfor %}
+        </div>
+    </form>
+</body>
+</html>

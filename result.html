@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        // Redirect to index page after 5 seconds
+        setTimeout(() => {
+            window.location.href = "{{ url_for('index') }}";
+        }, 5000);
+    </script>
+</head>
+<body>
+    <!-- Background music -->
+    <audio autoplay loop>
+        <source src="{{ url_for('static', filename='background.mp3') }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <header>
+        <h1>Your Results</h1>
+        <p>Your Score: {{ score }} / {{ total }}</p>
+    </header>
+
+    {% if prize %}
+        <section class="prize-section">
+            <h2>🎉 Congratulations! You won a {{ prize.type }} 🎉</h2>
+            {% if prize.type == 'T-Shirt' %}
+                <img src="{{ url_for('static', filename='images/tshirt.gif') }}" alt="T-Shirt" class="prize-img">
+            {% elif prize.type == 'Notebook' %}
+                <img src="{{ url_for('static', filename='images/notebook.gif') }}" alt="Notebook" class="prize-img">
+            {% else %}
+                <p>Prize type image not available.</p>
+            {% endif %}
+        </section>
+    {% else %}
+        <section class="no-prize-section">
+            <h2>😞 <span class="big-message">Better luck next time!</span> 😞</h2>
+        </section>
+    {% endif %}
+
+</body>
+</html>
